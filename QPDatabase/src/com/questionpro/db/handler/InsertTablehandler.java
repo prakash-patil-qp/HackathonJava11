@@ -27,10 +27,15 @@ public class InsertTablehandler implements QueryHandler{
                     String[] values = query.toUpperCase().split("VALUES\\(");
                     System.out.println("query Starts with VALUES");
                     if(null!=values && null!=values[1] ){
-                        String[] parameters = query.split("\\);");
+                        String[] parameters = values[1] .split("\\);");
                         if(null!=parameters[0] && !parameters[0].isEmpty()){
                             String[] actualValuesare = parameters[0].split(",");
+                            System.out.println("Values to be addded in DB are");
+                            for(String s:actualValuesare){
+                                System.out.println(s);
+                            }
 
+                            return true;
                         }
                     }
                 }
@@ -45,6 +50,9 @@ public class InsertTablehandler implements QueryHandler{
         System.out.println("I am insert");
         if(!validate(query)){
             System.out.println("Invalid Query for Insert");
+        }
+        else{
+            System.out.println("Record Inserted Successfully");
         }
 
 
