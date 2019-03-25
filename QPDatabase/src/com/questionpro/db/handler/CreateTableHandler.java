@@ -5,7 +5,7 @@ import java.io.*;
 public class CreateTableHandler implements QueryHandler {
     @Override
     public boolean validate(String query) {
-        return false;
+        return validateForCreate(query);
     }
 
     @Override
@@ -23,8 +23,8 @@ public class CreateTableHandler implements QueryHandler {
         if (validateForCreate(choice)) {
             String table_name = extractTableName(choice);
             try {
-                FileWriter metadataPath = new FileWriter("/home/user/HackathonJava11/ActualDatabase/table/" + table_name.toUpperCase() + "_metadata.txt");
-                FileWriter dataPath = new FileWriter("/home/user/HackathonJava11/ActualDatabase/table/" + table_name.toUpperCase() + "_data.txt");
+                FileWriter metadataPath = new FileWriter("/tmp/" + table_name.toUpperCase() + "_metadata.txt");
+                FileWriter dataPath = new FileWriter("/tmp/" + table_name.toUpperCase() + "_data.txt");
 
                 String tempDataTypes = choice.substring(choice.indexOf(table_name) + table_name.length() + 1);
                 int l = tempDataTypes.length();
