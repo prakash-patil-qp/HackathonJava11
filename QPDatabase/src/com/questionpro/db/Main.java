@@ -1,6 +1,7 @@
 package com.questionpro.db;
 
 import com.questionpro.db.command.TableOperation;
+import com.questionpro.db.factory.HandlerFactory;
 import com.questionpro.db.handler.CreateTableHandler;
 import com.questionpro.db.handler.InsertTablehandler;
 import com.questionpro.db.handler.QueryHandler;
@@ -21,7 +22,7 @@ public class Main {
             } while (!query.endsWith(";") || query.equalsIgnoreCase("exit"));
             String operation = query.replace(";","").split(" ")[0].toUpperCase();
             if (TableOperation.isValidOperation(operation)) {
-                QueryHandler handler;
+                QueryHandler handler = HandlerFactory.getInstance().getQueryHandler(operation)
                 switch (operation) {
                     case "CREATE":
                         handler = new CreateTableHandler();
