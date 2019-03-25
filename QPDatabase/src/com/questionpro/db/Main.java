@@ -19,7 +19,11 @@ public class Main {
             String operation = query.replace(";","").split(" ")[0].toUpperCase();
             if (TableOperation.isValidOperation(operation)) {
                 QueryHandler handler = HandlerFactory.getInstance().getQueryHandler(operation);
+                handler.validate(query);
                 handler.process(query);
+            }
+            else{
+                System.out.println("invalid command");
             }
         } while (!query.equalsIgnoreCase("exit"));
     }
