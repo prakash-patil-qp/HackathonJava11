@@ -16,17 +16,15 @@ public class Main {
             do {
                 query += input.nextLine();
             } while (!query.endsWith(";") || query.equalsIgnoreCase("exit"));
-            String operation = query.replace(";","").split(" ")[0].toUpperCase();
+            String operation = query.replace(";", "").split(" ")[0].toUpperCase();
             if (TableOperation.isValidOperation(operation)) {
                 QueryHandler handler = HandlerFactory.getInstance().getQueryHandler(operation);
-                if(handler.validate(query)) {
+                if (handler.validate(query)) {
                     handler.process(query);
-                }else
-                {
+                } else {
                     System.out.println("Not Valid");
                 }
-            }
-            else{
+            } else {
                 System.out.println("invalid command");
             }
         } while (!query.equalsIgnoreCase("exit"));
