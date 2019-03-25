@@ -38,7 +38,7 @@ public class InsertTablehandler implements QueryHandler {
                             String[] actualValuesare = parameters[0].split(",");
 
                             try {
-                                FileWriter fr = new FileWriter("/tmp/" + tokenArray[2] + "_data.txt", true);
+                                FileWriter fr = new FileWriter("/tmp/" + tokenArray[2].toUpperCase() + "_data.txt", true);
                                 BufferedWriter br = new BufferedWriter(fr);
                                 PrintWriter pr = new PrintWriter(br);
                                 pr.println();
