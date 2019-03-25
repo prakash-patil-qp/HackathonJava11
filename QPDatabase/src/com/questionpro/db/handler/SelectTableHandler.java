@@ -19,7 +19,7 @@ public class SelectTableHandler implements QueryHandler {
     }
 
     private boolean isColumsValid(String query) {
-        String[] columns = query.substring(query.indexOf("select") + 6, query.indexOf("from")).split(",");
+        String[] columns = query.substring(query.indexOf("SELECT") + 6, query.indexOf("FROM")).split(",");
         String tableName = getTableName(query);
         if (columns.length == 1 && columns[0].trim().equals("*")) {
             return true;
@@ -36,7 +36,7 @@ public class SelectTableHandler implements QueryHandler {
     }
 
     private String getTableName(String query) {
-        return query.substring(query.indexOf("from") + 4, query.indexOf(";")).trim();
+        return query.substring(query.indexOf("FROM") + 4, query.indexOf(";")).trim();
     }
 
     private List<String> getAllColums(String tableName) {
@@ -54,7 +54,7 @@ public class SelectTableHandler implements QueryHandler {
     }
 
     private boolean isSQLCorrect(String query) {
-        String regex = "select( .+)from( .+);";
+        String regex = "SELECT( .+)FROM( .+);";
         return Pattern.matches(regex, query);
     }
 
@@ -70,5 +70,6 @@ public class SelectTableHandler implements QueryHandler {
             }
             lines.stream().forEach(System.out::println);
         }
+        System.out.println("I am select");
     }
 }
