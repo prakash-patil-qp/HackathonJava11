@@ -15,11 +15,6 @@ public class InsertTablehandler implements QueryHandler {
 
         String[] tokenArray = query.split(" ");
 
-        for (String token : tokenArray) {
-            System.out.println(token);
-        }
-
-
         if (tokenArray != null && null != tokenArray[0] && "INSERT".equalsIgnoreCase(tokenArray[0]) &&
                 null != tokenArray[1] && "INTO".equalsIgnoreCase(tokenArray[1]) && null != tokenArray[2]) {
             if (checkIfTableExists(tokenArray[2])) {
@@ -80,7 +75,7 @@ public class InsertTablehandler implements QueryHandler {
 
 
     public boolean checkIfTableExists(String tableName) {
-        System.out.println("Inside check if table exists");
+
         File folder = new File("/tmp/");// Take path from Praveen
         File[] listOfFiles = folder.listFiles();
 
