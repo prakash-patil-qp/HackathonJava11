@@ -50,7 +50,7 @@ public class SelectTableHandler implements QueryHandler {
     }
 
     private Path getPath(String tableName) {
-        return Paths.get("/home/questionpro/HackathonJava11/ActualDatabase/table/" + tableName + "_data.txt");
+        return Paths.get("/tmp/" + tableName + "_data.txt");
     }
 
     private boolean isSQLCorrect(String query) {

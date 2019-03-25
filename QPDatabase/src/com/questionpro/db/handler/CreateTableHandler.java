@@ -11,22 +11,22 @@ public class CreateTableHandler implements QueryHandler {
     @Override
     public void process(String query) {
         System.out.println("query ---");
-        createDirectoryForCREATEOperation();
+        createDirectoryForCREATEOperation(query);
     }
 
-    private void createDirectoryForCREATEOperation() {
+    private void createDirectoryForCREATEOperation(String query) {
 
         System.out.println("Ready for create !!");
-        Console console =
-                System.console();
-        String choice = console.readLine();
-        if (validateForCreate(choice)) {
-            String table_name = extractTableName(choice);
+        Console console = System.console();
+        //String query = console.readLine();
+        if (validateForCreate(query)) {
+            String table_name = extractTableName(query);
             try {
+                System.out.println("inside yhis");
                 FileWriter metadataPath = new FileWriter("/tmp/" + table_name.toUpperCase() + "_metadata.txt");
                 FileWriter dataPath = new FileWriter("/tmp/" + table_name.toUpperCase() + "_data.txt");
 
-                String tempDataTypes = choice.substring(choice.indexOf(table_name) + table_name.length() + 1);
+                String tempDataTypes = query.substring(query.indexOf(table_name) + table_name.length() + 1);
                 int l = tempDataTypes.length();
                 String dataTypes = tempDataTypes.substring(0, l - 2).trim();
                 StringBuilder stringBuilderMetaData = new StringBuilder();
@@ -52,7 +52,7 @@ public class CreateTableHandler implements QueryHandler {
     }
 
     private boolean validateForCreate(String command) {
-        if (command.contains(";") &&(command.indexOf(";")==command.length()-1)&& command.toUpperCase().contains("CREATE TABLE")) {
+        if (command.contains(";")) {
             System.out.println("The command seems fine !!---" + command);
             return true;
         }

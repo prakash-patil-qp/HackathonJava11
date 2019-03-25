@@ -36,7 +36,7 @@ public class InsertTablehandler implements QueryHandler {
                             String[] actualValuesare = parameters[0].split(",");
 
                             try {
-                                FileWriter fr = new FileWriter("/home/newuser/Documents/Shweta/" + tokenArray[2] + "_data.txt",true);
+                                FileWriter fr = new FileWriter("/tmp/" + tokenArray[2] + "_data.txt",true);
                                 BufferedWriter br = new BufferedWriter(fr);
                                 PrintWriter pr = new PrintWriter(br);
                                 pr.println();
@@ -81,7 +81,7 @@ public class InsertTablehandler implements QueryHandler {
 
     public boolean checkIfTableExists(String tableName) {
         System.out.println("Inside check if table exists");
-        File folder = new File("/home/newuser/Documents/Shweta");// Take path from Praveen
+        File folder = new File("/tmp/");
         File[] listOfFiles = folder.listFiles();
 
         for (int i = 0; i < listOfFiles.length; i++) {
