@@ -8,6 +8,6 @@ public class CreateTableHandler implements QueryHandler{
 
     @Override
     public void process() {
-
+        System.out.println("I am create");
     }
 }

@@ -15,25 +15,27 @@ public class Main {
         String query = "";
         Scanner input = new Scanner(System.in, "utf-8");
         do {
-            query += input.nextLine();
-        } while (!query.endsWith(";"));
-        String operation = query.split(" ")[0].toUpperCase();
-        if (TableOperation.isValidOperation(operation)) {
-            QueryHandler handler;
-            switch (operation) {
-                case "CREATE":
-                    handler = new CreateTableHandler();
-                    handler.process();
-                    break;
-                case "INSERT":
-                    handler = new InsertTablehandler();
-                    handler.process();
-                    break;
-                case "SELECT":
-                    handler = new SelectTableHandler();
-                    handler.process();
-                    break;
+            do {
+                query += input.nextLine();
+            } while (!query.endsWith(";") || query.equalsIgnoreCase("exit"));
+            String operation = query.replace(";","").split(" ")[0].toUpperCase();
+            if (TableOperation.isValidOperation(operation)) {
+                QueryHandler handler;
+                switch (operation) {
+                    case "CREATE":
+                        handler = new CreateTableHandler();
+                        handler.process();
+                        break;
+                    case "INSERT":
+                        handler = new InsertTablehandler();
+                        handler.process();
+                        break;
+                    case "SELECT":
+                        handler = new SelectTableHandler();
+                        handler.process();
+                        break;
+                }
             }
-        }
+        } while (query.equalsIgnoreCase("exit"));
     }
 }
