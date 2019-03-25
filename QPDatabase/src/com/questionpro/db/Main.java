@@ -15,6 +15,7 @@ public class Main {
         String query = "";
         Scanner input = new Scanner(System.in, "utf-8");
         do {
+            query = "";
             do {
                 query += input.nextLine();
             } while (!query.endsWith(";") || query.equalsIgnoreCase("exit"));
