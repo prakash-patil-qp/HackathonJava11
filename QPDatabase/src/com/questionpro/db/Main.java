@@ -37,6 +37,6 @@ public class Main {
                         break;
                 }
             }
-        } while (query.equalsIgnoreCase("exit"));
+        } while (!query.equalsIgnoreCase("exit"));
     }
 }
