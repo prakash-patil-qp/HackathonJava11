@@ -1,4 +1,4 @@
-package com.questionpro.db.command;
+package com.questionpro.db.handler;
 
 public class SelectTableHandler {
 }
