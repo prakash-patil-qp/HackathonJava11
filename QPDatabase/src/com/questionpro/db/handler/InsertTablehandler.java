@@ -2,7 +2,7 @@ package com.questionpro.db.handler;
 
 public class InsertTablehandler implements QueryHandler{
     @Override
-    public boolean validate() {
+    public boolean validate(String query) {
         return false;
     }
 
