@@ -22,21 +22,8 @@ public class Main {
             } while (!query.endsWith(";") || query.equalsIgnoreCase("exit"));
             String operation = query.replace(";","").split(" ")[0].toUpperCase();
             if (TableOperation.isValidOperation(operation)) {
-                QueryHandler handler = HandlerFactory.getInstance().getQueryHandler(operation)
-                switch (operation) {
-                    case "CREATE":
-                        handler = new CreateTableHandler();
-                        handler.process(query);
-                        break;
-                    case "INSERT":
-                        handler = new InsertTablehandler();
-                        handler.process(query);
-                        break;
-                    case "SELECT":
-                        handler = new SelectTableHandler();
-                        handler.process(query);
-                        break;
-                }
+                QueryHandler handler = HandlerFactory.getInstance().getQueryHandler(operation);
+                handler.process(query);
             }
         } while (!query.equalsIgnoreCase("exit"));
     }

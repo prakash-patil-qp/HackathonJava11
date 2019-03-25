@@ -20,10 +20,18 @@ public enum TableOperation {
         this.operation = operation;
     }
 
-    public String getValue() {
-        return operation;
+    public int getValue() {
+        return id;
     }
-
+    public String getType() {
+        switch (getValue()){
+            case 1:return TableOperation.CREATE.getType();
+            case 2: return TableOperation.UPDATE.getType();
+            case 3: return TableOperation.SELECT.getType();
+            case 4: return TableOperation.INSERT.getType();
+            default:return "";
+        }
+    }
 
 
     public static boolean isValidOperation(String operation) {
