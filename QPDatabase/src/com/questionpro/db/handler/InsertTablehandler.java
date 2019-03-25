@@ -21,11 +21,11 @@ public class InsertTablehandler implements QueryHandler {
 
 
         if (tokenArray != null && null != tokenArray[0] && "INSERT".equalsIgnoreCase(tokenArray[0]) &&
-                null != tokenArray[1] && "INTO".equalsIgnoreCase(tokenArray[1]) && null != tokenArray[2] && null != tokenArray[3]) {
+                null != tokenArray[1] && "INTO".equalsIgnoreCase(tokenArray[1]) && null != tokenArray[2]) {
             if (checkIfTableExists(tokenArray[2])) {
                 //Table Exists
 
-                if (tokenArray[3].toUpperCase().startsWith("VALUES(")) {
+                if (null != tokenArray[3] && tokenArray[3].toUpperCase().startsWith("VALUES(")) {
 
 
                     String[] values = query.toUpperCase().split("VALUES\\(");
@@ -40,10 +40,12 @@ public class InsertTablehandler implements QueryHandler {
                                 BufferedWriter br = new BufferedWriter(fr);
                                 PrintWriter pr = new PrintWriter(br);
                                 pr.println();
-                                for (String s : actualValuesare) {
-                                    pr.print(s);
+                                for(int i =0;i<actualValuesare.length-1;i++){
+                                    pr.print(actualValuesare[i]);
                                     pr.print("|");
                                 }
+                                pr.print(actualValuesare[actualValuesare.length-1]);
+
                                 pr.close();
                                 br.close();
                                 fr.close();
@@ -84,9 +86,7 @@ public class InsertTablehandler implements QueryHandler {
 
         for (int i = 0; i < listOfFiles.length; i++) {
             if (listOfFiles[i].isFile()) {
-                System.out.println("File " + listOfFiles[i].getName());
                 if (listOfFiles[i].getName().toUpperCase().equalsIgnoreCase(tableName + "_" + "data.txt")) {
-                    System.out.println("Check IF checkIfTableExists is passed");
                     return true;
                 }
             }
