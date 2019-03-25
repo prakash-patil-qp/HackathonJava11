@@ -12,6 +12,7 @@ public enum TableOperation {
     INSERT;
 
     public static boolean isValidOperation(String operation) {
+        System.out.println("Operation is valid");
         CommandValidator commandValidator = (commandName) -> {
             List<String> operations = Stream.of(TableOperation.values())
                     .map(Enum::name)

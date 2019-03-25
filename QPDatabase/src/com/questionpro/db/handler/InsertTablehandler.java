@@ -14,7 +14,6 @@ public class InsertTablehandler implements QueryHandler {
         query.toUpperCase();
 
         String[] tokenArray = query.split(" ");
-
         if (tokenArray != null && null != tokenArray[0] && "INSERT".equalsIgnoreCase(tokenArray[0]) &&
                 null != tokenArray[1] && "INTO".equalsIgnoreCase(tokenArray[1]) && null != tokenArray[2]) {
             if (checkIfTableExists(tokenArray[2])) {
@@ -75,8 +74,7 @@ public class InsertTablehandler implements QueryHandler {
 
 
     public boolean checkIfTableExists(String tableName) {
-
-        File folder = new File("/tmp/");// Take path from Praveen
+        File folder = new File("/tmp/");
         File[] listOfFiles = folder.listFiles();
 
         for (int i = 0; i < listOfFiles.length; i++) {
