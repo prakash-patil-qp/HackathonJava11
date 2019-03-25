@@ -7,20 +7,23 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public enum TableOperation {
-    CREATE("CREATE"),
-    UPDATE("UPDATE"),
-    SELECT("SELECT"),
-    INSERT("INSERT");
+    CREATE(1, "CREATE"),
+    UPDATE(2, "UPDATE"),
+    SELECT(3, "SELECT"),
+    INSERT(4, "INSERT");
 
+    int id;
     String operation;
 
-    TableOperation(String operation) {
+    TableOperation(int id, String operation) {
+        this.id = id;
         this.operation = operation;
     }
 
     public String getValue() {
         return operation;
     }
+
 
 
     public static boolean isValidOperation(String operation) {
