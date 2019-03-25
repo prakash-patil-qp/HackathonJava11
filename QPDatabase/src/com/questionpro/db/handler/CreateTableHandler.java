@@ -5,7 +5,7 @@ import java.io.*;
 public class CreateTableHandler implements QueryHandler {
     @Override
     public boolean validate(String query) {
-        return false;
+        return validateForCreate(query);
     }
 
     @Override
