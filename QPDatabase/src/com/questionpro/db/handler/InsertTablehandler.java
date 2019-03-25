@@ -1,6 +1,10 @@
 package com.questionpro.db.handler;
+
 import java.io.File;
-public class InsertTablehandler implements QueryHandler{
+import java.io.FileWriter;
+import java.io.*;
+
+public class InsertTablehandler implements QueryHandler {
     @Override
     public boolean validate(String query) {
 
@@ -9,28 +13,50 @@ public class InsertTablehandler implements QueryHandler{
 
         query.toUpperCase();
 
-        String[] tokenArray =  query.split(" ");
-        System.out.println("Token Array After removing white spaces and split with spaces is");
-        for(String token:tokenArray){
+        String[] tokenArray = query.split(" ");
+
+        for (String token : tokenArray) {
             System.out.println(token);
         }
 
 
-        if(tokenArray!=null && null!=tokenArray[0] && "INSERT".equalsIgnoreCase(tokenArray[0]) &&
-                null!=tokenArray[1] && "INTO".equalsIgnoreCase(tokenArray[1]) && null!=tokenArray[2] && null!=tokenArray[3] ){
-            if(checkIfTableExists(tokenArray[2])){
+        if (tokenArray != null && null != tokenArray[0] && "INSERT".equalsIgnoreCase(tokenArray[0]) &&
+                null != tokenArray[1] && "INTO".equalsIgnoreCase(tokenArray[1]) && null != tokenArray[2]) {
+            if (checkIfTableExists(tokenArray[2])) {
                 //Table Exists
 
-                if(tokenArray[3].toUpperCase().startsWith("VALUES(")){
+                if (null != tokenArray[3] && tokenArray[3].toUpperCase().startsWith("VALUES(")) {
 
-                    System.out.println("3rd token value is---"+tokenArray[3]);
+
                     String[] values = query.toUpperCase().split("VALUES\\(");
-                    System.out.println("query Starts with VALUES");
-                    if(null!=values && null!=values[1] ){
-                        String[] parameters = query.split("\\);");
-                        if(null!=parameters[0] && !parameters[0].isEmpty()){
+
+                    if (null != values && null != values[1]) {
+                        String[] parameters = values[1].split("\\);");
+                        if (null != parameters[0] && !parameters[0].isEmpty()) {
                             String[] actualValuesare = parameters[0].split(",");
 
+                            try {
+                                FileWriter fr = new FileWriter("/home/newuser/Documents/Shweta/" + tokenArray[2] + "_data.txt",true);
+                                BufferedWriter br = new BufferedWriter(fr);
+                                PrintWriter pr = new PrintWriter(br);
+                                pr.println();
+                                for(int i =0;i<actualValuesare.length-1;i++){
+                                    pr.print(actualValuesare[i]);
+                                    pr.print("|");
+                                }
+                                pr.print(actualValuesare[actualValuesare.length-1]);
+
+                                pr.close();
+                                br.close();
+                                fr.close();
+
+                            } catch (Exception e) {
+                                return false;
+                            }
+
+
+
+                            return true;
                         }
                     }
                 }
@@ -43,24 +69,24 @@ public class InsertTablehandler implements QueryHandler{
     @Override
     public void process(String query) {
         System.out.println("I am insert");
-        if(!validate(query)){
+        if (!validate(query)) {
             System.out.println("Invalid Query for Insert");
+        } else {
+            System.out.println("Record Inserted Successfully");
         }
 
 
     }
 
 
-    public boolean checkIfTableExists(String tableName){
+    public boolean checkIfTableExists(String tableName) {
         System.out.println("Inside check if table exists");
         File folder = new File("/home/newuser/Documents/Shweta");// Take path from Praveen
         File[] listOfFiles = folder.listFiles();
-        System.out.println("Check file Name with tableName"+tableName+"_"+"data.txt");
+
         for (int i = 0; i < listOfFiles.length; i++) {
             if (listOfFiles[i].isFile()) {
-                System.out.println("File " + listOfFiles[i].getName());
-                if(listOfFiles[i].getName().toUpperCase().equalsIgnoreCase(tableName+"_"+"data.txt")){
-                    System.out.println("Check IF checkIfTableExists is passed");
+                if (listOfFiles[i].getName().toUpperCase().equalsIgnoreCase(tableName + "_" + "data.txt")) {
                     return true;
                 }
             }
