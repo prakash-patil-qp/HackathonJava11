@@ -53,13 +53,13 @@ public class CreateTableHandler implements QueryHandler {
     }
 
     private boolean validateForCreate(String command) {
-       if (command.contains(";") && command.toUpperCase().contains("CREATE TABLE")) {
+        if (command.contains(";") &&(command.indexOf(";")==command.length()-1)&& command.toUpperCase().contains("CREATE TABLE")) {
             System.out.println("The command seems fine !!---" + command);
             return true;
         }
         System.out.println("Please check the command syntax. :: \nYOUR command is----" + command + "\nStandard Syntax is---- CREATE TABLE TABLE_NAME( varName dataType,  varname dataType);");
 
-        createDirectoryForCREATEOperation();
+        //createDirectoryForCREATEOperation();
         return false;
     }
 
