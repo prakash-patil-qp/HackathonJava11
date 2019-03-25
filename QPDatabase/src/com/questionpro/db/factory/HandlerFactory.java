@@ -7,21 +7,16 @@ public class HandlerFactory {
     private static HandlerFactory handlerFactory = new HandlerFactory();
 
     private HandlerFactory() {
-
     }
 
     public static HandlerFactory getInstance() {
         return handlerFactory;
     }
 
-
     public QueryHandler getQueryHandler(String operationType) {
-
         switch (operationType) {
             case QueryHandler.CREATE:
                 return new CreateTableHandler();
-            case QueryHandler.UPDATE:
-                return new UpdateQueryHandler();
             case QueryHandler.SELECT:
                 return new SelectTableHandler();
             case QueryHandler.INSERT:

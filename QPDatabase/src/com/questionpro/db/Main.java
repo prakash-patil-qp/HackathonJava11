@@ -2,12 +2,8 @@ package com.questionpro.db;
 
 import com.questionpro.db.command.TableOperation;
 import com.questionpro.db.factory.HandlerFactory;
-import com.questionpro.db.handler.CreateTableHandler;
-import com.questionpro.db.handler.InsertTablehandler;
 import com.questionpro.db.handler.QueryHandler;
-import com.questionpro.db.handler.SelectTableHandler;
 
-import java.io.Console;
 import java.util.Scanner;
 
 public class Main {

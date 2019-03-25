@@ -40,7 +40,6 @@ public class CreateTableHandler implements QueryHandler {
                     stringBuilderMetaData.append("|");
                     stringBuilderData.append(dataToBeInsertedInData.trim());
                     stringBuilderData.append("|");
-
                 }
                 metadataPath.write(stringBuilderMetaData.toString());
                 metadataPath.close();
