@@ -7,7 +7,7 @@ public class CreateTableHandler implements QueryHandler{
     }
 
     @Override
-    public void process() {
+    public void process(String query) {
         System.out.println("I am create");
     }
 }

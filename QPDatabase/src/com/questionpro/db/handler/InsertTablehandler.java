@@ -7,7 +7,7 @@ public class InsertTablehandler implements QueryHandler{
     }
 
     @Override
-    public void process() {
+    public void process(String query) {
         System.out.println("I am insert");
     }
 }
