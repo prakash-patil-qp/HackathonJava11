@@ -9,7 +9,8 @@ import java.util.stream.Stream;
 public enum TableOperation {
     CREATE("CREATE"),
     UPDATE("UPDATE"),
-    SELECT("SELECT");
+    SELECT("SELECT"),
+    INSERT("INSERT");
 
     String operation;
 
