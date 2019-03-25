@@ -24,15 +24,15 @@ public class Main {
                 switch (operation) {
                     case "CREATE":
                         handler = new CreateTableHandler();
-                        handler.process();
+                        handler.process(query);
                         break;
                     case "INSERT":
                         handler = new InsertTablehandler();
-                        handler.process();
+                        handler.process(query);
                         break;
                     case "SELECT":
                         handler = new SelectTableHandler();
-                        handler.process();
+                        handler.process(query);
                         break;
                 }
             }
