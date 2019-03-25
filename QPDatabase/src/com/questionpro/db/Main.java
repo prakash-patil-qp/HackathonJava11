@@ -12,9 +12,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         System.out.println("Java 11 hackathon started.......................");
-        String query = "";
         Scanner input = new Scanner(System.in, "utf-8");
         do {
+            String query = "";
             do {
                 query += input.nextLine();
             } while (!query.endsWith(";") || query.equalsIgnoreCase("exit"));
