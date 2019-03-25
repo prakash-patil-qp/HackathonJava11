@@ -14,7 +14,8 @@ import java.util.regex.Pattern;
 public class SelectTableHandler implements QueryHandler {
     @Override
     public boolean validate(String query) {
-        return isSQLCorrect(query) && isColumsValid(query);
+        String finalQuery = query.toUpperCase();
+        return isSQLCorrect(finalQuery) && isColumsValid(finalQuery);
 
     }
 
@@ -61,15 +62,13 @@ public class SelectTableHandler implements QueryHandler {
     @Override
     public void process(String query) {
         String finalQuery = query.toUpperCase();
-        if (validate(finalQuery)) {
-            List<String> lines = new ArrayList<>();
-            try {
-                lines = Files.readAllLines(getPath(getTableName(finalQuery)));
-            } catch (Exception e) {
-                System.out.println("invalid query");
-            }
-            lines.stream().forEach(System.out::println);
+        List<String> lines = new ArrayList<>();
+        try {
+            lines = Files.readAllLines(getPath(getTableName(finalQuery)));
+        } catch (Exception e) {
+            System.out.println("invalid query");
         }
-        System.out.println("I am select");
+        lines.stream().forEach(System.out::println);
+
     }
 }
